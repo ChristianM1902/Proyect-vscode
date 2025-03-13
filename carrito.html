@@ -4,75 +4,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito - Vibe Streetwear</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <header>
+        <div id="cart-container">
+            <a href="index.html" class="nav-link" id="cart-icon">Regresar a la tienda</a>
+        </div>
+        <h1>Tu Carrito</h1>
+    </header>
 
-<header>
     <div class="container">
-        <h1 class="site-title">Carrito de Compras</h1>
-        <nav>
-            <a href="index.html" class="nav-link">Volver a la tienda</a>
-        </nav>
+        <section id="cart-detail">
+            <div id="cart-items"></div> <!-- Aquí se mostrarán los productos -->
+            <div id="cart-total"></div> <!-- Aquí se mostrará el total -->
+            <button id="checkout-button" onclick="checkout()">Proceder al pago</button>
+        </section>
     </div>
-</header>
 
-<div class="container">
-    <section class="cart-detail">
-        <h2>Productos en tu Carrito</h2>
-        <div id="cart-items"></div>
-        <div id="cart-total"></div>
-        <button id="checkout-button" onclick="checkout()">Proceder al pago</button>
-    </section>
-</div>
-
-<footer>
-    <div class="container">
+    <footer>
         <p>&copy; 2025 Tienda de Ropa | Todos los derechos reservados</p>
-    </div>
-</footer>
+    </footer>
+
+    <script src="cart.js"></script> <!-- Enlaza tu archivo JavaScript que maneja el carrito -->
+</body>
+</html>
+
 
 <script>
-    // Función para mostrar los productos en el carrito
-    function loadCart() {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        let cartItemsContainer = document.getElementById('cart-items');
-        let cartTotalContainer = document.getElementById('cart-total');
-        
-        if (cart.length === 0) {
-            cartItemsContainer.innerHTML = "<p>No hay productos en tu carrito.</p>";
-            cartTotalContainer.innerHTML = "";
-        } else {
-            let total = 0;
-            cartItemsContainer.innerHTML = cart.map(item => {
-                total += item.price * item.quantity;
-                return `
-                    <div class="cart-item">
-                        <h3>${item.name}</h3>
-                        <p>Precio: $${item.price}</p>
-                        <p>Cantidad: ${item.quantity}</p>
-                    </div>
-                `;
-            }).join('');
-            
-            cartTotalContainer.innerHTML = `<p><strong>Total: $${total.toFixed(2)}</strong></p>`;
-        }
+   // Función para mostrar los productos en el carrito
+function loadCart() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || []; // Obtener carrito de localStorage
+    let cartItemsContainer = document.getElementById('cart-items'); // Contenedor para los productos
+    let cartTotalContainer = document.getElementById('cart-total'); // Contenedor para el total
+
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = "<p>No hay productos en tu carrito.</p>"; // Mensaje si no hay productos
+        cartTotalContainer.innerHTML = ""; // El total estará vacío si no hay productos
+    } else {
+        let total = 0;
+        cartItemsContainer.innerHTML = cart.map(item => {
+            total += item.price * item.quantity; // Sumar los totales de cada producto
+            return `
+                <div class="cart-item">
+                    <h3>${item.name}</h3>
+                    <p>Precio: $${item.price}</p>
+                    <p>Cantidad: ${item.quantity}</p>
+                    <p>Subtotal: $${(item.price * item.quantity).toFixed(2)}</p>
+                </div>
+            `;
+        }).join(''); // Mostrar productos en HTML
+
+        // Mostrar el total
+        cartTotalContainer.innerHTML = `<p><strong>Total: $${total.toFixed(2)}</strong></p>`;
+    }
+}
+
+// Función para proceder al pago
+function checkout() {
+    alert("¡Gracias por tu compra!");
+    localStorage.removeItem('cart');  // Limpiar el carrito después de la compra
+    loadCart();  // Recargar la página para mostrar el carrito vacío
+}
+
+// Llamar a la función loadCart cuando la página se carga
+window.onload = function() {
+    loadCart();  // Cargar los productos en el carrito
+};
+// Función para añadir productos al carrito
+function addToCart(productName, productPrice) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || []; // Obtener carrito desde localStorage
+    let product = {
+        name: productName,
+        price: productPrice,
+        quantity: 1
+    };
+
+    let existingProduct = cart.find(item => item.name === productName); // Buscar si el producto ya está en el carrito
+    if (existingProduct) {
+        existingProduct.quantity += 1; // Si existe, aumentar la cantidad
+    } else {
+        cart.push(product); // Si no existe, añadir el producto
     }
 
-    // Función para proceder al pago
-    function checkout() {
-        alert("¡Gracias por tu compra!");
-        localStorage.removeItem('cart');  // Limpiar el carrito después de la compra
-        loadCart();  // Recargar la página para mostrar el carrito vacío
+    localStorage.setItem('cart', JSON.stringify(cart)); // Guardar el carrito actualizado en localStorage
+
+    updateCartCount(); // Actualizar el contador del carrito
+}
+
+// Función para actualizar el contador del carrito
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cartCount = cart.reduce((total, item) => total + item.quantity, 0); // Sumar las cantidades
+    document.getElementById('cart-count').textContent = cartCount; // Actualizar el contador
+}
+// Función para añadir productos al carrito
+function addToCart(productName, productPrice) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || []; // Obtener carrito desde localStorage
+    let product = {
+        name: productName,
+        price: productPrice,
+        quantity: 1
+    };
+
+    let existingProduct = cart.find(item => item.name === productName); // Buscar si el producto ya está en el carrito
+    if (existingProduct) {
+        existingProduct.quantity += 1; // Si existe, aumentar la cantidad
+    } else {
+        cart.push(product); // Si no existe, añadir el producto
     }
 
-   // Función para actualizar el contador del carrito
-   function updateCartCount() {
-        let cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-        document.getElementById('cart-count').textContent = cartCount;
-    }
+    localStorage.setItem('cart', JSON.stringify(cart)); // Guardar el carrito actualizado en localStorage
+
+    updateCartCount(); // Actualizar el contador del carrito
+}
+
+// Función para actualizar el contador del carrito
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cartCount = cart.reduce((total, item) => total + item.quantity, 0); // Sumar las cantidades
+    document.getElementById('cart-count').textContent = cartCount; // Actualizar el contador
+}
+
+
 </script>
-
 </body>
 </html>

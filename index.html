@@ -7,20 +7,22 @@
     <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <header>
+        <div id="cart-container">
+<a href="carrito.html" class="nav-link" id="cart-icon">Carrito (<span id="cart-count">0</span>)</a>
 
-<header>
+        </div>
     <h1>Vibe Streetwear</h1>
     <nav>
         <a href="#colecciones">Colecciones</a>
         <a href="#sobre-nosotros">Sobre Nosotros</a>
-        <a href="#testimonios">Testimonios</a>
-        <a href="#contacto">Contacto</a>
-        <!-- Enlace al carrito -->
-<a href="carrito.html" class="nav-link" id="cart-icon">Carrito (<span id="cart-count">0</span>)</a>
-<!-- Barra de búsqueda con un icono -->
+        <!-- Barra de búsqueda con un icono -->
 <input type="text" id="search-bar" placeholder="Buscar productos..." aria-label="Buscar productos">
 <i class="search-icon" id="search-icon">&#128269;</i>
 <div id="search-suggestions" class="search-suggestions"></div>
+        <a href="#testimonios">Testimonios</a>
+        <a href="#contacto">Contacto</a>
+
     </nav>
 </header>
 
@@ -184,6 +186,7 @@ function showAddedToCartPopup(productName) {
 const stars = document.querySelectorAll('.star');
 const ratingText = document.getElementById('rating-text');
 
+
 stars.forEach(star => {
     star.addEventListener('mouseover', () => {
         // Ilumina las estrellas hasta la estrella actual
@@ -324,8 +327,6 @@ document.addEventListener('click', function(e) {
         document.getElementById('search-suggestions').style.display = 'none';
     }
 });
-
-</script>
 </script>
 </body>
 </html>

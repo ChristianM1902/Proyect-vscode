@@ -285,7 +285,7 @@ header .container {
 
 .nav-link {
     text-decoration: none;
-    color: #fff;
+    color: #ffffff;
     font-size: 1.1rem;
     padding: 10px 15px;
     background-color: #8642be;
@@ -533,7 +533,7 @@ body {
 }
 
 h1, h2, h3 {
-    color: #a969ac; /* Restaurar color original del título */
+    color: #8642be; /* Restaurar color original del título */
     text-align: center;
 }
 
@@ -692,7 +692,7 @@ footer {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
+    background-color: #515050;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     border-radius: 8px;
@@ -831,11 +831,11 @@ footer {
 /* Icono de búsqueda */
 .search-icon {
     position: absolute;
-    top: 50%; /* Centramos el ícono verticalmente */
-    right: 10px; /* Ajustamos el espacio desde el borde derecho */
+    top: 66%; /* Centramos el ícono verticalmente */
+    right: 415px; /* Ajustamos el espacio desde el borde derecho */
     transform: translateY(-50%); /* Asegura que el ícono se mantenga centrado */
     font-size: 18px;
-    color: #777;
+    color: #121212;
 }
 
 /* Sugerencias de búsqueda */
@@ -860,5 +860,27 @@ footer {
 }
 
 .search-suggestions div:hover {
+    background-color: #f1f1f1;
+}
+/* Asegúrate de que el contenedor del carrito esté en la parte superior y a la derecha */
+#cart-container {
+    position: absolute;
+    top: 35px;
+    right: 25px;
+    z-index: 15;
+}
+
+/* Estilos opcionales para que el ícono del carrito se vea más atractivo */
+#cart-icon {
+    font-size: 25px;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #8642be;
+    border-radius: 15px;
+    border: 3px solid #8642be;
+}
+
+#cart-icon:hover {
     background-color: #f1f1f1;
 }
