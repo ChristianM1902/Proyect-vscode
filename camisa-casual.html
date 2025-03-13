@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camisa Casual - Vibe Streetwear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1 class="site-title">Camisa Casual</h1>
+        <nav>
+            <a href="index.html" class="nav-link">Volver a la tienda</a>
+            <a href="carrito.html" class="nav-link">Carrito (<span id="cart-count">0</span>)</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <section class="product-detail">
+        <h2>Detalles del Producto</h2>
+        <div class="product-main-image">
+            <img src="https://via.placeholder.com/800x1000?text=Camisa+Casual+Detalle" alt="Camisa Casual Detalle">
+        </div>
+        <p class="product-description">Camisa casual de algodón de alta calidad, disponible en varias tallas y colores. Ideal para ocasiones informales.</p>
+        <p class="product-price"><strong>Precio:</strong> $29.99</p>
+
+        <button class="buy-button" onclick="addToCart('Camisa Casual', 29.99)">Añadir al carrito</button>
+
+        <h3>Más Imágenes</h3>
+        <div class="gallery">
+            <img src="https://via.placeholder.com/800x1000?text=Camisa+Casual+1" alt="Camisa Casual 1">
+            <img src="https://via.placeholder.com/800x1000?text=Camisa+Casual+2" alt="Camisa Casual 2">
+            <img src="https://via.placeholder.com/800x1000?text=Camisa+Casual+3" alt="Camisa Casual 3">
+        </div>
+    </section>
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Tienda de Ropa | Todos los derechos reservados</p>
+    </div>
+</footer>
+
+<!-- Modal Popup -->
+<div id="popup" class="popup">
+    <p id="popup-message"></p>
+</div>
+
+<script>
+    // Función para añadir productos al carrito
+    function addToCart(productName, productPrice) {
+        // Obtener el carrito desde localStorage (si existe)
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Crear un objeto de producto
+        let product = {
+            name: productName,
+            price: productPrice,
+            quantity: 1
+        };
+
+        // Verificar si el producto ya está en el carrito
+        let existingProduct = cart.find(item => item.name === productName);
+        if (existingProduct) {
+            // Si ya está, incrementamos la cantidad
+            existingProduct.quantity += 1;
+        } else {
+            // Si no está, lo agregamos al carrito
+            cart.push(product);
+        }
+
+        // Guardar el carrito actualizado en localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Actualizar el contador del carrito
+        updateCartCount();
+
+        // Mostrar el pop-up (modal)
+        showPopup(productName);
+    }
+
+    // Función para actualizar el contador del carrito
+    function updateCartCount() {
+        // Obtener el carrito desde localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Contar la cantidad total de productos en el carrito
+        let cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+
+        // Mostrar la cantidad de productos en el contador del carrito
+        document.getElementById('cart-count').textContent = cartCount;
+    }
+
+    // Función para mostrar el pop-up (modal)
+    function showPopup(productName) {
+        const popup = document.getElementById('popup');
+        const popupMessage = document.getElementById('popup-message');
+
+        popupMessage.textContent = `¡${productName} ha sido añadido al carrito!`;
+        popup.style.display = 'block';
+
+        // Ocultar el modal después de 3 segundos
+        setTimeout(function() {
+            popup.style.display = 'none';
+        }, 3000);
+    }
+
+    // Actualizar el contador de carrito al cargar la página
+    window.onload = function() {
+        updateCartCount();
+    };
+</script>
+
+</body>
+</html>

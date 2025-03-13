@@ -1,0 +1,864 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+header {
+    background: #6d4bb2;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+nav {
+    margin: 20px 0;
+}
+nav a {
+    color: #ffffff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+nav a:hover {
+    color: #f4f4f4;
+}
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+.hero {
+    background: url('https://via.placeholder.com/1200x400?text=Bienvenido+a+Nuestra+Tienda') no-repeat center center/cover;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    position: relative;
+}
+.hero h1 {
+    font-size: 3em;
+    text-align: center;
+    margin: 0;
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+.gallery div {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    text-align: center;
+    width: 30%;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+.gallery div:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+.gallery img {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+}
+.gallery h3 {
+    margin: 10px 0;
+    font-size: 1.5em;
+}
+.gallery p {
+    color: #6d4bb2;
+}
+.about, .contact, .testimonials {
+    background: #ffffff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.about h2, .contact h2, .testimonials h2 {
+    text-align: center;
+    color: #636262;
+}
+.about p {
+    text-align: justify;
+    line-height: 1.6;
+}
+.contact form {
+    display: flex;
+    flex-direction: column;
+}
+.contact input, .contact textarea {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.contact button {
+    padding: 10px;
+    background: #35424a;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.contact button:hover {
+    background: #2c3e50;
+}
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background: #35424a;
+    color: #ffffff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+.testimonial {
+    background: #f9f9f9;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    display: inline-block;
+    text-align: center;
+}
+.testimonial h3 {
+    color: #6e6868;
+    font-size: 1.4em;
+}
+.testimonial p {
+    color: #777;
+    font-size: 1.1em;
+}
+.testimonial .customer-name {
+    margin-top: 10px;
+    font-weight: bold;
+}
+/* Responsive */
+@media (max-width: 768px) {
+    .gallery div {
+        width: 45%;
+    }
+}
+@media (max-width: 480px) {
+    .gallery div {
+        width: 100%;
+    }
+}
+/* Estilos generales para las imágenes de la galería */
+.gallery div {
+    width: 30%; /* Tamaño de las imágenes en la galería */
+    display: inline-block;
+    margin-bottom: 20px;
+    cursor: pointer;
+    position: relative; /* Esto es necesario para posicionar las galerías debajo de la imagen */
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+}
+
+.show-more {
+    color: #6d4bb2;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.show-more:hover {
+    color: #35424a;
+}
+
+/* Estilos generales para las imágenes de la galería */
+.gallery div {
+    width: 30%; /* Tamaño de las imágenes en la galería */
+    display: inline-block;
+    margin-bottom: 20px;
+    cursor: pointer;
+    position: relative; /* Esto es necesario para posicionar las galerías debajo de la imagen */
+    margin-top: 20px; /* Espacio entre las imágenes */
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+}
+
+.show-more {
+    color: #6d4bb2;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.show-more:hover {
+    color: #35424a;
+}
+
+/* Estilos para la galería expandida */
+.expanded-gallery {
+    display: none; /* Ocultamos la galería por defecto */
+    flex-wrap: wrap; /* Permite que las imágenes se distribuyan en filas */
+    gap: 20px; /* Espacio entre las imágenes de la galería */
+    padding: 20px 0;
+    position: relative; /* Posicionamos de manera relativa para que se ajuste */
+    margin-top: 20px; /* Espacio entre la imagen y la galería expandida */
+    justify-content: space-between; /* Alinea las imágenes de forma adecuada */
+}
+
+/* Estilos para las imágenes dentro de la galería expandida */
+.expanded-gallery img {
+    width: 32%; /* Las imágenes ocuparán el 32% del contenedor, lo que permite 3 por fila */
+    height: auto; /* Mantiene la proporción de las imágenes */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Mostrar las galerías al hacer clic */
+#camisa-casual:target,
+#pantalones-elegantes:target,
+#vestido-noche:target {
+    display: flex; /* Muestra la galería cuando se selecciona */
+}
+
+/* Estilos para las imágenes de la galería original */
+.gallery div:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .gallery div {
+        width: 45%; /* En pantallas más pequeñas, reducimos el tamaño de las imágenes a la mitad */
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery div {
+        width: 100%; /* En pantallas muy pequeñas, las imágenes ocupan el 100% */
+    }
+}
+/* Reseteo de márgenes y paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fondo y tipografía */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #2a2a2a;
+    color: #fff;
+    padding: 20px 0;
+}
+
+header .container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    background-color: #8642be;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #8642be;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Estilos de producto */
+.product-detail {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.product-main-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-description {
+    font-size: 1.2rem;
+    margin: 20px 0;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #8642be;
+    margin: 10px 0;
+}
+
+.buy-button {
+    background-color: #8642be;
+    color: #fff;
+    border: none;
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.buy-button:hover {
+    background-color: #8642be;
+}
+
+h3 {
+    margin-top: 40px;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.gallery {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.gallery img {
+    width: 32%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background-color: #2a2a2a;
+    color: #fff;
+    padding: 20px 0;
+    margin-top: 40px;
+    text-align: center;
+}
+
+footer p {
+    font-size: 1rem;
+}
+/* Estilo para las imágenes de los productos */
+.product img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.product:hover img {
+    transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+}
+
+
+/* Botón de hover */
+.show-more {
+    display: block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.show-more:hover {
+    color: #0056b3;
+}
+
+/* Header */
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Sección de hero */
+.hero {
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.hero h1 {
+    font-size: 3em;
+    color: #4d4c4c;
+}   
+
+/* Sección sobre nosotros */
+.about {
+    background-color: #fafafa;
+    padding: 30px;
+}
+
+/* Formulario de contacto */
+.contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact input, .contact textarea {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    border-radius: 5px;
+}
+
+.contact button:hover {
+    background-color: #0056b3;
+}
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+}
+
+/* Estilos para pantallas muy pequeñas (como teléfonos móviles) */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+    .nav a {
+        font-size: 0.9rem;
+    }
+}
+button.buy-button {
+    transition: background-color 0.3s ease;
+}
+
+button.buy-button:hover {
+    background-color: #333;
+    color: #fff;
+}
+/* Estilos para el Pop-up (modal) */
+.popup {
+    display: none; /* Inicialmente está oculto */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    z-index: 9999; /* Asegura que el modal esté por encima de otros elementos */
+}
+
+.popup p {
+    margin: 0;
+    font-weight: bold;
+}
+.star {
+    font-size: 50px; /* Aumentamos el tamaño para que sea visible */
+    cursor: pointer;
+    color: gray; /* Color base de las estrellas */
+    transition: color 0.2s ease; /* Transición para el cambio de color */
+}
+
+.star.hover {
+    color: gold; /* Cuando el mouse pasa sobre la estrella */
+}
+
+.star.selected {
+    color: gold; /* Cuando la estrella ha sido seleccionada */
+}
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #343333;
+}
+
+h1, h2, h3 {
+    color: #a969ac; /* Restaurar color original del título */
+    text-align: center;
+}
+
+/* Header Styles */
+header {
+    background-color: #222222;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+.product {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #eee;
+}
+
+.product h3 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.product p {
+    color: #888;
+    font-size: 18px;
+}
+
+.show-more {
+    color: #007BFF;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    margin: 10px 0;
+}
+
+.show-more:hover {
+    text-decoration: underline;
+}
+
+/* Testimonial Section */
+.testimonials {
+    background-color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.testimonial {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.testimonial h3 {
+    font-size: 22px;
+    color: #333;
+}
+
+.testimonial p {
+    font-size: 16px;
+    color: #666;
+}
+
+.customer-name {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Rating Stars */
+#rating-stars {
+    margin: 20px 0;
+}
+
+.star {
+    font-size: 30px;
+    cursor: pointer;
+    color: #ddd;
+    transition: color 0.3s ease;
+}
+
+.star:hover {
+    color: #ffcc00;
+}
+
+.star.selected {
+    color: #ffcc00;
+}
+
+/* Testimonial Form */
+#testimonial-form {
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#testimonial-form input,
+#testimonial-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+#testimonial-form button {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#testimonial-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+.popup.show {
+    display: block;
+}
+
+.popup #popup-message {
+    font-size: 18px;
+}
+/* Estilo general para la sección de opiniones */
+.Opiniones {
+    background-color: #f9f9f9;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* Título de la sección */
+.Opiniones h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Testimonios */
+#testimonials-list {
+    margin-bottom: 30px;
+}
+
+.testimonial {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.testimonial p {
+    font-size: 1rem;
+    color: #777;
+    line-height: 1.6;
+}
+
+/* Estilo del formulario de opiniones */
+#testimonial-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+#testimonial-form input,
+#testimonial-form textarea {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+#testimonial-form button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+#testimonial-form button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo de las estrellas */
+#rating-stars {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.star {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.3s;
+}
+
+.star:hover {
+    color: #f8b400;
+}
+
+.star.selected {
+    color: #f8b400;
+}
+
+/* Estilo para cuando las estrellas son seleccionadas */
+#rating-stars .star.selected {
+    color: #f8b400;
+}
+/* Barra de búsqueda */
+#search-bar {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 40px 10px 20px; /* Añadimos espacio para el icono */
+    font-size: 16px;
+    border-radius: 25px;
+    border: 2px solid #ddd;
+    transition: all 0.3s ease;
+    position: relative; /* Necesario para posicionar el ícono dentro de la barra */
+}
+
+/* Estilo para cuando la barra de búsqueda tiene el focus */
+#search-bar:focus {
+    border-color: #007bff; /* Color al hacer focus */
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Icono de búsqueda */
+.search-icon {
+    position: absolute;
+    top: 50%; /* Centramos el ícono verticalmente */
+    right: 10px; /* Ajustamos el espacio desde el borde derecho */
+    transform: translateY(-50%); /* Asegura que el ícono se mantenga centrado */
+    font-size: 18px;
+    color: #777;
+}
+
+/* Sugerencias de búsqueda */
+.search-suggestions {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.search-suggestions div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.search-suggestions div:hover {
+    background-color: #f1f1f1;
+}

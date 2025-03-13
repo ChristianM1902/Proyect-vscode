@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - Vibe Streetwear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1 class="site-title">Carrito de Compras</h1>
+        <nav>
+            <a href="index.html" class="nav-link">Volver a la tienda</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <section class="cart-detail">
+        <h2>Productos en tu Carrito</h2>
+        <div id="cart-items"></div>
+        <div id="cart-total"></div>
+        <button id="checkout-button" onclick="checkout()">Proceder al pago</button>
+    </section>
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Tienda de Ropa | Todos los derechos reservados</p>
+    </div>
+</footer>
+
+<script>
+    // Función para mostrar los productos en el carrito
+    function loadCart() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cartItemsContainer = document.getElementById('cart-items');
+        let cartTotalContainer = document.getElementById('cart-total');
+        
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = "<p>No hay productos en tu carrito.</p>";
+            cartTotalContainer.innerHTML = "";
+        } else {
+            let total = 0;
+            cartItemsContainer.innerHTML = cart.map(item => {
+                total += item.price * item.quantity;
+                return `
+                    <div class="cart-item">
+                        <h3>${item.name}</h3>
+                        <p>Precio: $${item.price}</p>
+                        <p>Cantidad: ${item.quantity}</p>
+                    </div>
+                `;
+            }).join('');
+            
+            cartTotalContainer.innerHTML = `<p><strong>Total: $${total.toFixed(2)}</strong></p>`;
+        }
+    }
+
+    // Función para proceder al pago
+    function checkout() {
+        alert("¡Gracias por tu compra!");
+        localStorage.removeItem('cart');  // Limpiar el carrito después de la compra
+        loadCart();  // Recargar la página para mostrar el carrito vacío
+    }
+
+   // Función para actualizar el contador del carrito
+   function updateCartCount() {
+        let cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+        document.getElementById('cart-count').textContent = cartCount;
+    }
+</script>
+
+</body>
+</html>
