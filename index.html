@@ -283,7 +283,6 @@ document.querySelectorAll('.star').forEach(star => {
 // Cargar testimonios cuando la página se carga
 window.onload = loadTestimonials;
 
-// Función para filtrar productos según la búsqueda
 document.getElementById('search-bar').addEventListener('input', function() {
     let searchQuery = this.value.toLowerCase();
     let items = document.querySelectorAll('.product');
@@ -292,9 +291,9 @@ document.getElementById('search-bar').addEventListener('input', function() {
     // Filtrar productos por nombre
     items.forEach(item => {
         let name = item.querySelector('h3').textContent.toLowerCase();
-        if (name.includes(searchQuery) && searchQuery.length > 0) {
+        if (searchQuery.length === 0 || name.includes(searchQuery)) {  // Si no hay búsqueda, mostrar todos los productos
             item.style.display = 'block';  // Mostrar productos que coinciden
-            suggestions.push(name);       // Guardar coincidencias para las sugerencias
+            if (searchQuery.length > 0) suggestions.push(name); // Guardar coincidencias para las sugerencias
         } else {
             item.style.display = 'none';   // Ocultar productos que no coinciden
         }
@@ -303,6 +302,7 @@ document.getElementById('search-bar').addEventListener('input', function() {
     // Mostrar sugerencias si hay resultados
     showSuggestions(suggestions);
 });
+
 
 // Función para mostrar sugerencias de búsqueda
 function showSuggestions(suggestions) {
@@ -313,6 +313,7 @@ function showSuggestions(suggestions) {
         suggestions.forEach(suggestion => {
             const suggestionElement = document.createElement('div');
             suggestionElement.textContent = suggestion;
+            
             suggestionsContainer.appendChild(suggestionElement);
         });
         suggestionsContainer.style.display = 'block';  // Mostrar sugerencias

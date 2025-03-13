@@ -847,10 +847,10 @@ footer {
     width: 100%;
     max-height: 200px;
     overflow-y: auto;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: #2c2c2c;
+    border: 1px solid #603576a6;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(190, 106, 250, 0.61);
     z-index: 10;
 }
 
@@ -860,13 +860,13 @@ footer {
 }
 
 .search-suggestions div:hover {
-    background-color: #f1f1f1;
+    background-color: #faf4f4;
 }
 /* Asegúrate de que el contenedor del carrito esté en la parte superior y a la derecha */
 #cart-container {
     position: absolute;
     top: 35px;
-    right: 25px;
+    right: 60px;
     z-index: 15;
 }
 
